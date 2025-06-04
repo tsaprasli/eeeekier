@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Μικροί Κηπουροί, Μεγάλοι Δημιουργοί - Αξιολόγηση Δράσης</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Visualization & Content Choices:
+        - Report Info: Project "Μικροί Κηπουροί, Μεγάλοι Δημιουργοί" - Evaluation Report.
+        - Επισκόπηση: Goal: Inform (Project Intro). Method: HTML text. Interaction: None. Justification: Sets context.
+        - Η Δράση μας: Goal: Inform/Explore (Project Activities). Method: HTML cards for key activity categories (Εκπαιδευτικές Δράσεις & Συνεργασίες, Τεχνολογική Καινοτομία, Δημιουργίες & Διάχυση). Interaction: None for this version, clear presentation. Justification: Organizes diverse activities thematically.
+        - Αποτελέσματα & Αντίκτυπος: Goal: Inform/Synthesize. Method: HTML lists, styled text blocks for qualitative results. Chart.js Bar Chart for "Κατανομή Δραστηριοτήτων ανά Μήνα" (Data: Key activities per month from Dec-May). Chart.js Donut Chart for "Είδη Συνεργασιών" (Data: Categories of partners). Interaction: Chart tooltips. Justification: Visualizes activity spread and partnerships; summarizes qualitative impact.
+        - Αξιολόγηση & Μελλοντικά Βήματα: Goal: Inform/Explore. Method: Accordion HTML sections for sub-topics (Επιτυχίες & Διευκολύνσεις, Προκλήσεις, Προτάσεις για το Μέλλον, Αξιοποίηση Πρακτικών, Αλλαγές από Αρχικό Σχεδιασμό). Interaction: Click to expand/collapse accordion items. Justification: Manages large amount of evaluation text efficiently.
+        - Υλικό & Πόροι: Goal: Inform. Method: Grid of HTML cards with Unicode icons (e.g., 🪴, 🛠️, 📢, 📊) and descriptions. Interaction: None. Justification: Visually lists outputs.
+        - All text content is extracted and paraphrased from the source report for web readability. NO SVG/Mermaid used. Chart.js for charts on Canvas. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif; /* Tailwind typically uses a system font stack, Inter is a good explicit choice */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px; /* Max width for larger screens */
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px; /* Base height */
+            max-height: 400px; /* Max height to prevent overflow */
+        }
+        @media (min-width: 768px) { /* md breakpoint */
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .accordion-button.open + .accordion-content {
+            max-height: 1000px; /* Adjust as needed */
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #16a34a; /* green-600 */
+        }
+    </style>
+</head>
+<body class="bg-lime-50 text-stone-800">
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-green-700">Μικροί Κηπουροί</a>
+            <div class="space-x-4">
+                <a href="#overview" class="nav-link text-stone-600">Επισκόπηση</a>
+                <a href="#action" class="nav-link text-stone-600">Η Δράση μας</a>
+                <a href="#results" class="nav-link text-stone-600">Αποτελέσματα</a>
+                <a href="#evaluation" class="nav-link text-stone-600">Αξιολόγηση</a>
+                <a href="#materials" class="nav-link text-stone-600">Υλικό</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-8">
+
+        <section id="overview" class="mb-16 pt-16 -mt-16">
+            <h1 class="text-4xl font-bold text-green-700 mb-6 text-center">«Μικροί Κηπουροί, Μεγάλοι Δημιουργοί: Φτιάχνουμε το Δικό μας Λίπασμα!»</h1>
+            <p class="text-lg text-stone-700 leading-relaxed mb-4 text-center max-w-3xl mx-auto">
+                Καλωσορίσατε στην παρουσίαση της αξιολόγησης του σχεδίου δράσης μας! Αυτή η σελίδα συνοψίζει την υλοποίηση, τα αποτελέσματα και τις μελλοντικές προοπτικές του προγράμματος κομποστοποίησης που πραγματοποιήθηκε στο ΕΕΕΕΚ Ιεράπετρας κατά το σχολικό έτος 2024-2025. Στόχος μας ήταν η περιβαλλοντική ευαισθητοποίηση, η ανάπτυξη δεξιοτήτων και η προώθηση της αειφορίας.
+            </p>
+            <div class="bg-white p-6 rounded-lg shadow-lg mt-8 max-w-2xl mx-auto">
+                <h3 class="text-2xl font-semibold text-green-600 mb-3 text-center">Στοιχεία Δράσης</h3>
+                <ul class="list-disc list-inside space-y-2 text-stone-700">
+                    <li><strong>Σχολική Μονάδα:</strong> ΕΕΕΕΚ Ιεράπετρας</li>
+                    <li><strong>Διάρκεια:</strong> Δεκέμβριος 2024 - Μάιος 2025</li>
+                    <li><strong>Εστίαση:</strong> Κομποστοποίηση, Περιβαλλοντική Εκπαίδευση, Ανάπτυξη Δεξιοτήτων STEM, Συνεργασία</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="action" class="mb-16 pt-16 -mt-16">
+            <h2 class="text-3xl font-bold text-green-700 mb-8 text-center">Η Δράση μας: Βήμα προς Βήμα</h2>
+            <p class="text-lg text-stone-700 leading-relaxed mb-8 text-center max-w-3xl mx-auto">
+                Η υλοποίηση του προγράμματος ήταν μια δυναμική διαδικασία γεμάτη μάθηση και δημιουργικότητα. Οι μαθητές μας ενεπλάκησαν ενεργά σε κάθε στάδιο, από τη θεωρητική κατάρτιση έως την πρακτική εφαρμογή και τη διάχυση των αποτελεσμάτων.
+            </p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <h3 class="text-xl font-semibold text-green-600 mb-3">📚 Εκπαιδευτικές Δράσεις & Συνεργασίες</h3>
+                    <img src="https://placehold.co/600x400/E5E7EB/1F2937?text=Εκπαιδευτική+Επίσκεψη" alt="Εικόνα Εκπαιδευτικής Επίσκεψης" class="w-full h-auto rounded-lg mb-4 shadow-md">
+                    <p class="text-stone-700 mb-2">Τα εισαγωγικά μαθήματα έθεσαν τις βάσεις, ενώ οι εκπαιδευτικές επισκέψεις (Green Mountain Project, Βιοενεργειακή Κρήτης) προσέφεραν πολύτιμες εμπειρίες μεγάλης κλίμακας.</p>
+                    <p class="text-stone-700">Η συνεργασία με το Ειδικό Νηπιαγωγείο Ιεράπετρας και τοπικές καφετέριες ενίσχυσε την κοινωνική διάσταση και την πρακτική εφαρμογή.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <h3 class="text-xl font-semibold text-green-600 mb-3">💡 Τεχνολογική Καινοτομία</h3>
+                    <img src="https://placehold.co/600x400/E5E7EB/1F2937?text=Σύστημα+Micro:bit" alt="Εικόνα Συστήματος Micro:bit" class="w-full h-auto rounded-lg mb-4 shadow-md">
+                    <p class="text-stone-700 mb-2">Αναπτύχθηκε ένα καινοτόμο σύστημα με micro:bit από τους μαθητές για τη μέτρηση της θερμοκρασίας και υγρασίας του κομπόστ.</p>
+                    <p class="text-stone-700">Αυτή η εφαρμογή ενίσχυσε τις δεξιότητες STEM και ανέδειξε την πρακτική χρήση της τεχνολογίας στην περιβαλλοντική διαχείριση.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <h3 class="text-xl font-semibold text-green-600 mb-3">🎨 Δημιουργίες & Διάχυση</h3>
+                    <img src="https://placehold.co/600x400/E5E7EB/1F2937?text=Δημιουργία+Αφίσας" alt="Εικόνα Δημιουργίας Αφίσας" class="w-full h-auto rounded-lg mb-4 shadow-md">
+                    <p class="text-stone-700 mb-2">Κατασκευάστηκε μεγάλος κομποστοποιητής, αφίσες και ενημερωτικό φυλλάδιο για την κομποστοποίηση.</p>
+                    <p class="text-stone-700">Τα αποτελέσματα παρουσιάστηκαν στο σχολείο και σε άλλα ειδικά σχολεία της πόλης, διαχέοντας τη γνώση.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="results" class="mb-16 pt-16 -mt-16">
+            <h2 class="text-3xl font-bold text-green-700 mb-8 text-center">Αποτελέσματα & Αντίκτυπος</h2>
+            <p class="text-lg text-stone-700 leading-relaxed mb-8 text-center max-w-3xl mx-auto">
+                Η δράση είχε πολλαπλά θετικά αποτελέσματα, επηρεάζοντας τους μαθητές, το σχολείο και την ευρύτερη κοινότητα. Οι μαθητές απέκτησαν γνώσεις, ανέπτυξαν δεξιότητες και καλλιέργησαν περιβαλλοντική συνείδηση.
+            </p>
+            <div class="grid md:grid-cols-2 gap-8 items-start">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold text-green-600 mb-4">Βασικά Επιτεύγματα</h3>
+                    <ul class="list-none space-y-3">
+                        <li class="flex items-start"><span class="text-green-500 mr-2">✔</span><span class="text-stone-700">Απόκτηση ουσιαστικών γνώσεων για την κομποστοποίηση και την κυκλική οικονομία.</span></li>
+                        <li class="flex items-start"><span class="text-green-500 mr-2">✔</span><span class="text-stone-700">Ανάπτυξη πρακτικών, κοινωνικών και συνεργατικών δεξιοτήτων.</span></li>
+                        <li class="flex items-start"><span class="text-green-500 mr-2">✔</span><span class="text-stone-700">Ενίσχυση δεξιοτήτων STEM μέσω της χρήσης micro:bit.</span></li>
+                        <li class="flex items-start"><span class="text-green-500 mr-2">✔</span><span class="text-stone-700">Καλλιέργεια οικολογικής συνείδησης και υπευθυνότητας.</span></li>
+                        <li class="flex items-start"><span class="text-green-500 mr-2">✔</span><span class="text-stone-700">Παραγωγή ποιοτικού κομπόστ για τον σχολικό κήπο.</span></li>
+                        <li class="flex items-start"><span class="text-green-500 mr-2">✔</span><span class="text-stone-700">Επιτυχής διάχυση των αποτελεσμάτων και ευαισθητοποίηση της κοινότητας.</span></li>
+                    </ul>
+                </div>
+                <div class="space-y-8">
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-semibold text-green-600 mb-3 text-center">Κατανομή Δραστηριοτήτων ανά Μήνα</h3>
+                        <div class="chart-container">
+                            <canvas id="activityChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-semibold text-green-600 mb-3 text-center">Είδη Συνεργασιών</h3>
+                        <div class="chart-container">
+                            <canvas id="collaborationChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="evaluation" class="mb-16 pt-16 -mt-16">
+            <h2 class="text-3xl font-bold text-green-700 mb-8 text-center">Αξιολόγηση & Μελλοντικά Βήματα</h2>
+            <p class="text-lg text-stone-700 leading-relaxed mb-8 text-center max-w-3xl mx-auto">
+                Η αξιολόγηση της δράσης ανέδειξε σημαντικές επιτυχίες, αλλά και σημεία προς περαιτέρω ανάπτυξη. Οι προτάσεις μας στοχεύουν στη συνέχιση και ενίσχυση παρόμοιων πρωτοβουλιών.
+            </p>
+            <div class="space-y-4 max-w-3xl mx-auto">
+                <div>
+                    <button class="accordion-button w-full text-left bg-green-600 hover:bg-green-700 text-white p-4 rounded-lg shadow-md focus:outline-none transition-colors duration-300 flex justify-between items-center">
+                        <span class="font-semibold">🌟 Επιτυχίες & Παράγοντες Διευκόλυνσης</span>
+                        <span class="arrow text-xl transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content bg-white p-4 rounded-b-lg shadow-md border border-t-0 border-green-600">
+                        <p class="text-stone-700 mb-2"><strong>Επιτυχίες:</strong> Ενεργή συμμετοχή μαθητών, υποστήριξη εκπαιδευτικών, συνεργασία με τοπική κοινότητα, καινοτόμος χρήση τεχνολογίας.</p>
+                        <p class="text-stone-700"><strong>Παράγοντες Διευκόλυνσης:</strong> Ενθουσιασμός μαθητών, αφοσίωση εκπαιδευτικών, πρόθυμη ανταπόκριση συνεργατών, ύπαρξη σχολικού κήπου.</p>
+                    </div>
+                </div>
+                <div>
+                    <button class="accordion-button w-full text-left bg-green-600 hover:bg-green-700 text-white p-4 rounded-lg shadow-md focus:outline-none transition-colors duration-300 flex justify-between items-center">
+                        <span class="font-semibold">🚧 Προκλήσεις & Δυσκολίες</span>
+                        <span class="arrow text-xl transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content bg-white p-4 rounded-b-lg shadow-md border border-t-0 border-green-600">
+                        <p class="text-stone-700 mb-2">Περιορισμένος χρόνος για όλες τις δράσεις (π.χ. δημιουργία βίντεο), συντονισμός για συνεχή συλλογή υλικών, διατήρηση ιδανικών συνθηκών στον κομποστοποιητή, αρχική εξοικείωση μαθητών.</p>
+                    </div>
+                </div>
+                 <div>
+                    <button class="accordion-button w-full text-left bg-green-600 hover:bg-green-700 text-white p-4 rounded-lg shadow-md focus:outline-none transition-colors duration-300 flex justify-between items-center">
+                        <span class="font-semibold">🚀 Προτάσεις για το Μέλλον</span>
+                        <span class="arrow text-xl transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content bg-white p-4 rounded-b-lg shadow-md border border-t-0 border-green-600">
+                        <p class="text-stone-700 mb-2"><strong>Συνέχιση & Επέκταση:</strong> Διεύρυνση συνεργασιών, παραγωγή κομπόστ για οικογένειες, δημιουργία mini-φυτωρίου.</p>
+                        <p class="text-stone-700 mb-2"><strong>Νέες Δράσεις:</strong> Πρόγραμμα "ανακύκλωσης και δημιουργίας" με άλλα υλικά.</p>
+                        <p class="text-stone-700"><strong>Επιμορφώσεις:</strong> Προηγμένες τεχνικές κομποστοποίησης (vermicomposting), πράσινες τεχνολογίες STEM, ψηφιακή επικοινωνία αποτελεσμάτων.</p>
+                    </div>
+                </div>
+                <div>
+                    <button class="accordion-button w-full text-left bg-green-600 hover:bg-green-700 text-white p-4 rounded-lg shadow-md focus:outline-none transition-colors duration-300 flex justify-between items-center">
+                        <span class="font-semibold">🛠️ Αξιοποίηση Πρακτικών & Αλλαγές</span>
+                        <span class="arrow text-xl transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content bg-white p-4 rounded-b-lg shadow-md border border-t-0 border-green-600">
+                        <p class="text-stone-700 mb-2"><strong>Αξιοποίηση:</strong> Η βιωματική μάθηση, η συνεργασία με την κοινότητα, το ενημερωτικό υλικό και το σύστημα micro:bit μπορούν να αποτελέσουν μοντέλο για άλλα σχολεία.</p>
+                        <p class="text-stone-700"><strong>Αλλαγές από Αρχικό Σχεδιασμό:</strong> Ενισχυμένη συνεργασία με καφετέριες και Ειδικό Νηπιαγωγείο, ανάπτυξη συστήματος micro:bit, παρουσιάσεις σε άλλα σχολεία. Δεν υλοποιήθηκε η δημιουργία εκπαιδευτικών βίντεο λόγω χρόνου.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="materials" class="mb-16 pt-16 -mt-16">
+            <h2 class="text-3xl font-bold text-green-700 mb-8 text-center">Υλικό & Πόροι που Παρήχθησαν</h2>
+             <p class="text-lg text-stone-700 leading-relaxed mb-8 text-center max-w-3xl mx-auto">
+                Η δράση μας δεν περιορίστηκε μόνο σε εμπειρίες, αλλά οδήγησε και στην παραγωγή συγκεκριμένου υλικού και υποδομών που θα συνεχίσουν να ωφελούν τη σχολική μας κοινότητα.
+            </p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow duration-300">
+                    <span class="text-5xl mb-3 block">🪴</span>
+                    <h3 class="text-xl font-semibold text-green-600 mb-2">Κομποστοποιητής</h3>
+                    <p class="text-stone-700">Μεγάλος, λειτουργικός κομποστοποιητής στον σχολικό κήπο.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow duration-300">
+                    <span class="text-5xl mb-3 block">🖼️</span>
+                    <h3 class="text-xl font-semibold text-green-600 mb-2">Αφίσες</h3>
+                    <p class="text-stone-700">Ενημερωτικές αφίσες για την κομποστοποίηση.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow duration-300">
+                    <span class="text-5xl mb-3 block">📜</span>
+                    <h3 class="text-xl font-semibold text-green-600 mb-2">Ενημερωτικό Φυλλάδιο</h3>
+                    <p class="text-stone-700">Αναλυτικό φυλλάδιο για τη διαδικασία και τα οφέλη.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow duration-300">
+                    <span class="text-5xl mb-3 block">💡</span>
+                    <h3 class="text-xl font-semibold text-green-600 mb-2">Σύστημα Micro:bit</h3>
+                    <p class="text-stone-700">Για παρακολούθηση θερμοκρασίας/υγρασίας κομπόστ.</p>
+                </div>
+                 <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow duration-300">
+                    <span class="text-5xl mb-3 block">📸</span>
+                    <h3 class="text-xl font-semibold text-green-600 mb-2">Οπτικοακουστικό Υλικό</h3>
+                    <p class="text-stone-700">Φωτογραφίες και βίντεο από τις φάσεις της δράσης.</p>
+                    <img src="https://placehold.co/600x400/E5E7EB/1F2937?text=Φωτογραφία+Δράσης" alt="Φωτογραφία από τις δράσεις του προγράμματος" class="w-full h-auto rounded-lg mt-4 shadow-md">
+                </div>
+                 <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow duration-300">
+                    <span class="text-5xl mb-3 block">📊</span>
+                    <h3 class="text-xl font-semibold text-green-600 mb-2">Παρουσιάσεις</h3>
+                    <p class="text-stone-700">Ψηφιακές παρουσιάσεις για τη διάχυση των αποτελεσμάτων.</p>
+                </div>
+                 <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow duration-300">
+                    <span class="text-5xl mb-3 block">🌿</span>
+                    <h3 class="text-xl font-semibold text-green-600 mb-2">Οργανικό Κομπόστ</h3>
+                    <p class="text-stone-700">Ποιοτικό λίπασμα για τον σχολικό κήπο.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-stone-800 text-lime-50 py-8 text-center">
+        <p>&copy; 2025 ΕΕΕΕΚ Ιεράπετρας - Πρόγραμμα «Μικροί Κηπουροί, Μεγάλοι Δημιουργοί».</p>
+        <p class="text-sm">Δημιουργία Ιστοσελίδας για την Αξιολόγηση της Δράσης.</p>
+    </footer>
+
+    <script>
+        // Accordion functionality
+        const accordionButtons = document.querySelectorAll('.accordion-button');
+        accordionButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                const arrow = button.querySelector('.arrow');
+                
+                button.classList.toggle('open');
+                arrow.classList.toggle('rotate-180');
+
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        });
+
+        // Chart.js - Activity Distribution Chart
+        const activityCtx = document.getElementById('activityChart').getContext('2d');
+        new Chart(activityCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Δεκ', 'Ιαν', 'Φεβ', 'Μαρ', 'Απρ', 'Μάι'],
+                datasets: [{
+                    label: 'Αριθμός Βασικών Δραστηριοτήτων',
+                    data: [4, 2, 1, 2, 2, 1], // Data based on analysis: Dec:4, Jan:2, Feb:1, Mar:2, Apr:2, May:1
+                    backgroundColor: 'rgba(22, 163, 74, 0.7)', // green-600 with opacity
+                    borderColor: 'rgba(22, 101, 52, 1)', // green-800
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return ' Δραστηριότητες: ' + context.parsed.y;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Chart.js - Collaboration Type Chart
+        const collaborationCtx = document.getElementById('collaborationChart').getContext('2d');
+        new Chart(collaborationCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Εκπαιδευτικοί Φορείς', 'Τοπικές Επιχειρήσεις', 'Εξειδικευμένες Εταιρείες'],
+                datasets: [{
+                    label: 'Είδη Συνεργασιών',
+                    data: [1, 1, 2], // Data: Kindergarten:1, Cafes (group):1, Specialized Companies:2
+                    backgroundColor: [
+                        'rgba(132, 204, 22, 0.7)',  // lime-500
+                        'rgba(77, 124, 15, 0.7)',   // lime-700
+                        'rgba(59, 130, 246, 0.7)' // blue-500 (for differentiation)
+                    ],
+                    borderColor: [
+                        'rgba(101, 163, 13, 1)', // lime-600
+                        'rgba(63, 98, 18, 1)',  // lime-800
+                        'rgba(37, 99, 235, 1)'  // blue-700
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    },
+                    tooltip: {
+                         callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed !== null) {
+                                    label += context.parsed;
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Offset for sticky header if needed. Header height is approx 60px.
+                    const headerOffset = 70; 
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>
